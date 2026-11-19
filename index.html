@@ -447,12 +447,12 @@ dlButtons.forEach(b => b.addEventListener('click', async () => {
   try {
     const data = buildPDF();
     if (dlApi) {
-      await dlApi.save({ filename: "Resume - Enrique Gierbolini.pdf", data });
+      await dlApi.save({ filename: "Enrique_Gierbolini_RESUME.pdf", data });
       toast("Resume descargado");
     } else {
       // Fuera de Claude (por ejemplo, en tu propia página): descarga directa
       const url = URL.createObjectURL(new Blob([data], {type:"application/pdf"}));
-      const a = document.createElement('a'); a.href = url; a.download = "Resume - Enrique Gierbolini.pdf";
+      const a = document.createElement('a'); a.href = url; a.download = "Enrique_Gierbolini_RESUME.pdf";
       document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url), 4000);
     }
   } catch (e) {
