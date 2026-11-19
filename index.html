@@ -369,16 +369,18 @@ function buildPDF(){
   const W = 612, M = 48, CW = W - 2*M;
   const TEAL=[20,150,135], INK=[28,32,36], GRAY=[95,106,115];
   // header band
-  doc.setFillColor(23,26,29); doc.rect(0,0,W,96,"F");
-  doc.setFillColor(...TEAL); doc.rect(0,96,W,3,"F");
+  doc.setFillColor(23,26,29); doc.rect(0,0,W,108,"F");
+  doc.setFillColor(...TEAL); doc.rect(0,108,W,3,"F");
   doc.setFont("helvetica","bold"); doc.setFontSize(22); doc.setTextColor(255,255,255);
   doc.text(R.name, M, 44);
   doc.setFontSize(11); doc.setTextColor(45,212,191); doc.text(R.role, M, 63);
   doc.setFont("helvetica","normal"); doc.setFontSize(9.5); doc.setTextColor(200,208,214);
-  const c = R.contact.slice(); if (LINKEDIN) c.push(LINKEDIN.replace(/^https?:\/\/(www\.)?/,""));
-  doc.text(c.join("   ·   "), M, 81);
+  doc.text(R.contact.join("   ·   "), M, 81);
+  const links = ["enriquegierbolini.github.io"];
+  if (LINKEDIN) links.push(LINKEDIN.replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,""));
+  doc.text(links.join("   ·   "), M, 95);
 
-  let y = 126;
+  let y = 138;
   const ensure = h => { if (y + h > 750) { doc.addPage(); y = 56; } };
   const heading = t => {
     ensure(34);
